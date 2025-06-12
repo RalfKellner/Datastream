@@ -4,10 +4,10 @@ from openpyxl import Workbook
 filenames = ["static", "ri", "po", "ph", "pl", "p", "vo", "mv", "mtbv", "af", "up"]
 
 # Basisordner (kannst du anpassen)
-base_folder = "D:/Datastream/US/"
+base_folder = "D:/Datastream/EU/"
 
 # 47 Ordner erstellen (01 bis 31)
-for i in range(1, 32):
+for i in range(1, 55, 1):
     folder_name = f"{i:02d}"  # Format mit führender Null
     folder_path = os.path.join(base_folder, folder_name)
     os.makedirs(folder_path, exist_ok=False)

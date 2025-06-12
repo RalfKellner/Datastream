@@ -27,12 +27,12 @@ def melt_dataframe(df, value_name, date_series):
     return melted
 
 # where raw xlsx files lie in subfolders
-data_path = r'D:\Datastream\US'
+data_path = r'D:\Datastream\EU'
 # collect all folders but not files from data_path
 folder_names = [name for name in os.listdir(data_path) if len(name.split(".")) == 1]
 folder_names.sort()
 # folder where panel data sets are going to saved within data_path
-destination_path = "Panel_Data_US"
+destination_path = "Panel_Data_EU"
 store_at = os.path.join(data_path, destination_path)
 logging.info("Creating folder for saving panel data sets.")
 os.makedirs(store_at)
