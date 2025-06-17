@@ -12,7 +12,7 @@ def plot_panel_data(panel):
     grouped          = panel_vis.groupby('Date')
     unique_firms     = grouped['Stock'].nunique()
     daily_mean_ret   = grouped['Return'].mean()
-    daily_mcap       = grouped['MCAP'].mean() * 1_000_000
+    daily_mcap       = grouped['MarketCAP'].mean() * 1_000_000
     cumulative_return = (1 + daily_mean_ret).cumprod() - 1
 
     fig, ax = plt.subplots(3, 1, figsize=(10, 12), sharex=False)
@@ -30,7 +30,7 @@ def plot_panel_data(panel):
     # 3. daily mean market-cap ---------------------------------------
     ax[2].plot(daily_mcap.index, daily_mcap.values, color='red')
     ax[2].set_title('Daily Mean Market Capitalization')
-    ax[2].set_ylabel('MCAP')
+    ax[2].set_ylabel('MarketCAP')
     ax[2].set_xlabel('Date')
 
     for a in ax:
@@ -44,14 +44,14 @@ class DSPreprocess:
     @staticmethod
     def handle_missings(panel, statics, country,
             ffill_cols=['Open', 'High', 'Low', 'Close', 'Volume', 'ReturnIndex', 'AdjFactor', 'UnadjClose'],
-            bfill_cols=['MCAP']):
+            bfill_cols=['MarketCAP']):
         """
         Filters a panel DataFrame by removing initial rows containing missing observations for specified columns on a per-stock basis.
         Furthermore, modeling relevant variables are forward filled. non-modeling relevant variables are forward filled and then backward filled.
         If the non-modeling relevant variables are not reported for a Stock at all it is populated by the median value of the corresponding timeframe.
 
         Parameters:
-        - panel (pd.DataFrame): Contains at least columns "Stock", "Date", "MCAP", etc.
+        - panel (pd.DataFrame): Contains at least columns "Stock", "Date", "MarketCAP", etc.
         - statics (pd.DataFrame): Contains at least columns "GEOGN" (country name) and "DSCD" (stock ID).
         - country (str): Name of the country (e.g., "UNITED STATES").
         - ffill_cols (list): Columns critical for modeling, to be forward-filled.
@@ -59,7 +59,7 @@ class DSPreprocess:
 
         Returns:
         - pd.DataFrame: Cleaned subset of panel data (only stocks for 'country'),
-          with missing MCAP filled by that country's median MCAP (per date).
+          with missing MarketCAP filled by that country's median MarketCAP (per date).
         """
         country_stocks = statics.loc[statics["GEOGN"] == country, "DSCD"].unique()
         panel = panel[panel["Stock"].isin(country_stocks)].copy()
@@ -86,8 +86,8 @@ class DSPreprocess:
                 panel_filtered.groupby('Date')[bfill_cols].transform('median')
             )
         else:
-            panel_filtered['MCAP'] = panel_filtered['MCAP'].fillna(
-                panel_filtered.groupby('Date')['MCAP'].transform('median')
+            panel_filtered['MarketCAP'] = panel_filtered['MarketCAP'].fillna(
+                panel_filtered.groupby('Date')['MarketCAP'].transform('median')
             )
 
         if panel.shape[0] == 0:

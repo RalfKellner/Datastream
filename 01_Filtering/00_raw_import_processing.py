@@ -2,23 +2,30 @@ import re
 import os
 import pandas as pd
 import logging
-
+from typing import Tuple, List
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
-def fix_id_columns(df, date_col="Date"):
+
+def fix_id_columns(df: pd.DataFrame, date_col: str = "Date") -> Tuple[pd.DataFrame, List[str]]:
     def parse_id_from_col(col_name):
-        match = re.search(r"DPL#\(([\dA-Za-z]+)\(", col_name)
-        if match:
-            return match.group(1)
-        return col_name
+        match = re.search(r"DPL#\(([^(\s]+)\(", col_name)
+        return match.group(1) if match else None
 
     new_columns = {}
-    for c in df.columns:
-        if c != date_col: # Skip renaming the date column
-            new_columns[c] = parse_id_from_col(c)
+    unmatched = []
 
-    df_renamed = df.rename(columns=new_columns)
-    return df_renamed
+    for col in df.columns:
+        if col == date_col:
+            new_columns[col] = col
+        else:
+            parsed = parse_id_from_col(col)
+            if parsed:
+                new_columns[col] = parsed
+            else:
+                new_columns[col] = col  # keep original if no match
+                unmatched.append(col)
+
+    return df.rename(columns=new_columns), unmatched
 
 def melt_dataframe(df, value_name, date_series):
     df = df.copy()
@@ -27,7 +34,7 @@ def melt_dataframe(df, value_name, date_series):
     return melted
 
 # where raw xlsx files lie in subfolders
-data_path = r'D:\Datastream\EU'
+data_path = r'D:\Datastream\PriceData\EU'
 # collect all folders but not files from data_path
 folder_names = [name for name in os.listdir(data_path) if len(name.split(".")) == 1]
 folder_names.sort()
@@ -130,17 +137,53 @@ for folder_name in folder_names:
     df_UP.loc[:, df_UP.columns != "Date"] = df_UP.loc[:, df_UP.columns != "Date"].apply(pd.to_numeric, errors="coerce")
 
     # get rid of raw column names
-    df_RI    = fix_id_columns(df_RI)
-    df_VO    = fix_id_columns(df_VO)
-    df_PO    = fix_id_columns(df_PO)
-    df_PH    = fix_id_columns(df_PH)
-    df_PL    = fix_id_columns(df_PL)
-    df_P     = fix_id_columns(df_P)
-    df_MV    = fix_id_columns(df_MV)
-    df_MTBV  = fix_id_columns(df_MTBV)
-    df_AF    = fix_id_columns(df_AF)
-    df_UP    = fix_id_columns(df_UP)
+    unmatched_ids_all = []
+    # get rid of raw column names
+    df_RI, unmatched_ids    = fix_id_columns(df_RI)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_VO, unmatched_ids    = fix_id_columns(df_VO)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_PO, unmatched_ids    = fix_id_columns(df_PO)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_PH, unmatched_ids    = fix_id_columns(df_PH)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_PL, unmatched_ids    = fix_id_columns(df_PL)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_P, unmatched_ids     = fix_id_columns(df_P)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_MV, unmatched_ids    = fix_id_columns(df_MV)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_MTBV, unmatched_ids  = fix_id_columns(df_MTBV)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_AF, unmatched_ids    = fix_id_columns(df_AF)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
+    df_UP, unmatched_ids    = fix_id_columns(df_UP)
+    unmatched_ids = [name for name in unmatched_ids if not(name.startswith("#ERROR"))]
+    if len(unmatched_ids) > 0:
+        unmatched_ids_all.extend(unmatched_ids)
 
+    if len(unmatched_ids_all) > 0:
+        logging.info(f"Some ids for folder {folder_path} could not be identified. Check them manually!")
+        pd.Series(list(set(unmatched_ids_all))).to_csv(os.path.join(folder_path, "unmatched_ids.csv"), index = False)
+    
     # keep only columns without errors during data retrieval
     ref_cols = df_RI.columns
     df_RI  = df_RI.reindex(columns=ref_cols)
@@ -163,7 +206,7 @@ for folder_name in folder_names:
     df_P_panel   = melt_dataframe(df_P, 'Close', date_series)
     df_VO_panel  = melt_dataframe(df_VO, 'Volume', date_series)
     df_RI_panel  = melt_dataframe(df_RI, 'ReturnIndex', date_series)
-    df_MV_panel  = melt_dataframe(df_MV, 'MCAP', date_series)
+    df_MV_panel  = melt_dataframe(df_MV, 'MarketCAP', date_series)
     df_MTBV_panel  = melt_dataframe(df_MTBV, 'MTBV', date_series)
     df_AF_panel  = melt_dataframe(df_AF, 'AdjFactor', date_series)
     df_UP_panel  = melt_dataframe(df_UP, 'UnadjClose', date_series)

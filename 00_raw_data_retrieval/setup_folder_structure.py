@@ -1,14 +1,17 @@
 import os
 from openpyxl import Workbook
 
-filenames = ["static", "ri", "po", "ph", "pl", "p", "vo", "mv", "mtbv", "af", "up"]
+#filenames = ["static", "ri", "po", "ph", "pl", "p", "vo", "mv", "mtbv", "af", "up"]
+
+#filenames = ["DPS", "MTBV", "NOSH", "NOSHOU", "PA", "PB", "VO", "WC10010", "WC01201", "WC05302"]
+filenames = ["DPS", "MTBV", "NOSH", "NOSHOU", "PA", "PB", "VO", "WC10010", "WC01201", "WC05302"]
 
 # Basisordner (kannst du anpassen)
-base_folder = "D:/Datastream/EU/"
+base_folder = "D:/Datastream/Firmcharacteristics/US"
 
-# 47 Ordner erstellen (01 bis 31)
-for i in range(1, 55, 1):
-    folder_name = f"{i:02d}"  # Format mit führender Null
+# 
+for i in range(1, 33, 1):
+    folder_name = f"{i:03d}"  # Format mit führender Null
     folder_path = os.path.join(base_folder, folder_name)
     os.makedirs(folder_path, exist_ok=False)
 
