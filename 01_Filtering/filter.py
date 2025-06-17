@@ -1288,19 +1288,20 @@ class DSPreprocess:
         # Merge the previous month's UnadjClose back into the original panel
         panel = panel.merge(monthly[['Stock', 'Month', 'prev_UnadjClose']], on=['Stock', 'Month'], how='left')
 
-        # For each month, compute the 25th percentile of the previous month's UnadjClose, ignoring NA values
-        panel['q'] = panel.groupby('Month')['prev_UnadjClose'].transform(lambda x: x.quantile(percentile))
+        # For each month, compute the percentile of the previous month's UnadjClose, ignoring NA values
+        quantile_string = f"q_{str(percentile)}"
+        panel[quantile_string] = panel.groupby('Month')['prev_UnadjClose'].transform(lambda x: x.quantile(percentile))
 
         # Filter out stocks in month t if their previous month's UnadjClose is below the percentile.
         panel_filtered = panel[
-            (panel['prev_UnadjClose'].isna()) | (panel['prev_UnadjClose'] >= panel['q'])
+            (panel['prev_UnadjClose'].isna()) | (panel['prev_UnadjClose'] >= panel[quantile_string])
             ].copy()
 
-        panel_filtered.drop(columns=['Month', 'q'], inplace=True)
+        panel_filtered.drop(columns=['Month', quantile_string], inplace=True)
 
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
         print(f"Filter (21) removed ~{round(removed_fraction * 100, 4)}% of observations")
-        return panel_filtered
+        return panel_filtered, panel.groupby("Month")[quantile_string]
 
 
     @staticmethod

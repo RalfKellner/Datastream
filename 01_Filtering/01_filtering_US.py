@@ -2,21 +2,29 @@ import os
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
-from filter import DSPreprocess, plot_panel_data
+from filter import DSPreprocess
 import logging
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
-data_path      = r"/Users/ralfkellner/Datastream/US"
+data_path      = r"/data/Datastream/PriceData/US"
 save_dir = "Filtered_Data"
-os.makedirs(os.path.join(data_path, save_dir))
-nof_subfolders = 31 
+
+penny_percentile = 0.10
+std_extreme_removal_threshold = 10
+
+try:
+    os.makedirs(os.path.join(data_path, save_dir))
+except:
+    logging.info("Saving directory seems to exist already.")
+
+nof_subfolders = 32 
 
 timeseries_dfs = []
 static_dfs     = []
 
 for i in tqdm(range(1, nof_subfolders + 1), desc="Load data"):
-    folder_nbr       = f"{i:02d}"
+    folder_nbr       = f"{i:03d}"
     folder_path      = os.path.join(data_path, folder_nbr)
     OHLCV_panel_iter = pd.read_feather(os.path.join(data_path, "Panel_Data_US", f"OHLCV_panel_{folder_nbr}.feather"))
     static_iter      = pd.read_excel(os.path.join(folder_path, f'static_{folder_nbr}.xlsx'), engine='openpyxl')
@@ -197,12 +205,13 @@ OHLCV_panel_temp = DSPreprocess.filter_adjustment_inconsistencies(OHLCV_panel, t
 
 
 # Filter (21) - Penny stocks.
-OHLCV_panel = DSPreprocess.filter_penny_stocks(OHLCV_panel, 0.10)
-
+OHLCV_panel, penny_thresholds = DSPreprocess.filter_penny_stocks(OHLCV_panel, 0.10)
+logging.info("Saving monthly thresholds for penny stock selection.")
+penny_thresholds.to_csv(os.path.join(data_path, save_dir, "penny_stock_thresholds.csv"), index = True)
 
 # Filter (Own - Extreme returns)
 # OHLCV_panel = DSPreprocess.filter_extreme_returns(OHLCV_panel, lower=0.00, upper=0.999)
-OHLCV_panel = DSPreprocess.filter_extreme_returns2(OHLCV_panel, n_std=5) # Less aggressive than above version.
+OHLCV_panel = DSPreprocess.filter_extreme_returns2(OHLCV_panel, n_std=10) # Less aggressive than above version.
 
 
 # Filter (12) - Filters the panel to include only stocks with sufficient observation history
@@ -217,5 +226,5 @@ statics_for_filtered = statics[statics.DSCD.isin(OHLCV_panel_final.Stock.unique(
 
 # save
 logging.info("Saving data and static information for remaining companies.")
-OHLCV_panel_final.to_feather(os.path.join(data_path, save_dir, "Financial_base_data_panel_filtered.feather"))
-statics_for_filtered.to_csv(os.path.join(data_path, save_dir, "statics_filtered.csv"), index = False)
+OHLCV_panel_final.to_feather(os.path.join(data_path, save_dir, f"Financial_base_data_panel_filtered_{penny_percentile}_{std_extreme_removal_threshold}.feather"))
+statics_for_filtered.to_csv(os.path.join(data_path, save_dir, f"statics_filtered_{penny_percentile}_{std_extreme_removal_threshold}.csv"), index = False)
