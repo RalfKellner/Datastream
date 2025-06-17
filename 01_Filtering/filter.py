@@ -1252,7 +1252,7 @@ class DSPreprocess:
         return panel_filtered.reset_index(drop=True)
 
     @staticmethod
-    def filter_penny_stocks(panel):
+    def filter_penny_stocks(panel, percentile = 0.10):
         """
         Filters out stocks from the investment universe for month t when their previous month's
         unadjusted close price ('UnadjClose') is in the lowest quartile of stocks available in that month.
@@ -1289,14 +1289,14 @@ class DSPreprocess:
         panel = panel.merge(monthly[['Stock', 'Month', 'prev_UnadjClose']], on=['Stock', 'Month'], how='left')
 
         # For each month, compute the 25th percentile of the previous month's UnadjClose, ignoring NA values
-        panel['q25'] = panel.groupby('Month')['prev_UnadjClose'].transform(lambda x: x.quantile(0.25))
+        panel['q'] = panel.groupby('Month')['prev_UnadjClose'].transform(lambda x: x.quantile(percentile))
 
-        # Filter out stocks in month t if their previous month's UnadjClose is below the 25th percentile.
+        # Filter out stocks in month t if their previous month's UnadjClose is below the percentile.
         panel_filtered = panel[
-            (panel['prev_UnadjClose'].isna()) | (panel['prev_UnadjClose'] >= panel['q25'])
+            (panel['prev_UnadjClose'].isna()) | (panel['prev_UnadjClose'] >= panel['q'])
             ].copy()
 
-        panel_filtered.drop(columns=['Month', 'q25'], inplace=True)
+        panel_filtered.drop(columns=['Month', 'q'], inplace=True)
 
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
         print(f"Filter (21) removed ~{round(removed_fraction * 100, 4)}% of observations")
