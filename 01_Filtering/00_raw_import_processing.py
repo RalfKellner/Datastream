@@ -34,7 +34,7 @@ def melt_dataframe(df, value_name, date_series):
     return melted
 
 # where raw xlsx files lie in subfolders
-data_path = r'D:\Datastream\PriceData\EU'
+data_path = r'/data/Datastream/PriceData/EU'
 # collect all folders but not files from data_path
 folder_names = [name for name in os.listdir(data_path) if len(name.split(".")) == 1]
 folder_names.sort()

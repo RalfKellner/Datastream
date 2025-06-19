@@ -2,6 +2,10 @@ import re
 import pandas as pd
 import numpy as np
 import matplotlib.pylab as plt
+import logging
+
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+
 
 ########################################################################################################################
 ## Helper functions:
@@ -94,7 +98,7 @@ class DSPreprocess:
             removal_percentage = 0
         else:
             removal_percentage = round(1 - panel_filtered.shape[0] / panel.shape[0], 5)
-        print(f"For {country}, filter (0) removes ~{removal_percentage * 100}% of observations")
+        logging.info(f"For {country}, filter (0) removes ~{removal_percentage * 100}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -139,6 +143,31 @@ class DSPreprocess:
             "CONSOLIDATED", "INSURED", "CAPITAL SHARES", "DEBT STRATEGIES",
             "LIQUIDATING", "LIQUID UNIT", "L UNIT", "- LASD", "ACQUISITION",
             "CAP UNIT", "INCOME UNIT", "PREFERRED"],
+
+            'CANADA': 
+            ["SUBSCRIPTION RIGHTS", "FUND SHARES", "INVESTMENT TRUST", "UNIT", "EXPD", 
+            "PROPERTY TRUST", "N L", "NL", "INCOME TRUST UNITS", "INCOME COMMERCE", 
+            "EXPIRY", "NL ORDINARY", "COMMERCE PAR", "DEFERRED", "EXPIRED", "CDN", 
+            "INCOME FUND", "SUBSCRIPTION RECEIPTS", "RECEIPT", "RIGHTS", "SUB VOTING", 
+            "TRUST UNIT", "MBS TRUST", "BOND FUND", "PARTNERSHIP UNIT", "PARTNER UNIT", 
+            "REIT", "FUND UNITS", "LOAN FUND", "RIGHTS", "CONVERTIBLE FUND", 
+            "PREFERENCE SHARES", "COMBINED UNITS", '"IDS" UNITS', "SPLIT", "REDEEMABLE", 
+            "DIVIDEND FUND", "TOTAL RETURN", "DEBENTURE", "WARRANT", "CREDIT FUND", 
+            "ETF", "STAPLE", "INDEX NOTES", "TR UNIT", "NOTES", "LINKED", "CUMULATIVE", 
+            "EXCHANGE CERTIFICATE", "APPRECIATION FUND", "INCOME TRUST", 
+            "REAL ESTATE INVESTMENT TRUST", "MORTGAGE INCOME FUND", "REAL ESTATE FUND", 
+            "HIGH INCOME MORTGAGE FUND", "NOTES", "PRIN PROTECTED", 
+            "PRESERVATION LISTED FUCOMMERCIAL REIT", "REDEEMABLE UNITS", 
+            "REAL ESTATE UNITS", "INFRASTRUCTURE FUND TRUST UNIT", "STRATEGY FUND", 
+            "INCOME REIT", "FINANCIAL TRUST", "SERIES", "REAL ESTATE INVESTMENT", 
+            "ALLOCATION TRUST", "BACKED", "ADVANTAGED", "RECOVERY FUND", "LOAN FUND", 
+            "SENIOR LOAD FUND", "PROPERTY SERIES", "OFFERED SHARES", "CDA", "CNQ", 
+            "PROPERTY TRUST", "EQUITIES", "FAMILY CORE FUND", "FAMILY CORE CLASS", 
+            "SUBSCRIPTION RECEIPTS", "MBS TRUST", "UNIT PARTNERSHIP", "REIT LP", 
+            "PARTICIPATING SECURITIES", "CANADIAN FUND", "EQUITY FUND", 
+            "CONVERTIBLE FUND", "DEBANTURE", "CONVERTIBLE", "FOCUS FUND", 
+            "SPLIT PRIORITY SHARES", "SPLIT", "NIL PAID", "TOTAL RETURN TRUST", 
+            "BALANCED FUND", "CREDIT FUND", "VOTING RIGHTS", "VOTING SHARES", "UNT"],
             
             'AUSTRIA':
             ['CERTIFICATE', ' ZT ', ' NK5 ', 'DUPLICATE', 'PARTICIPATION CERTIFICATE', 
@@ -304,7 +333,7 @@ class DSPreprocess:
         remaining_stocks = statics_filtered.DSCD.unique()
 
         removal_percentage = round(1 - keep_condition.sum() / statics.shape[0], 2)
-        print(f"For {country}, filter (1) removes ~{removal_percentage * 100}% of stocks (based on raw data).")
+        logging.info(f"For {country}, filter (1) removes ~{removal_percentage * 100}% of stocks (based on raw data).")
 
         panel_filtered = panel[panel["Stock"].isin(remaining_stocks)].copy()
 
@@ -327,6 +356,9 @@ class DSPreprocess:
         cross_listings_dict = {
             'UNITED STATES':
             r"\(NYS\)|\(NAS\)|\(ASE\)|\(OTC\)|\(XSQ\)|\(XQB\)",
+
+            'CANADA':
+            r"\(TSX\)|\(VSE\)|\(MON\)|\(TSE\)|\(TOR\)",
             
             'AUSTRIA':
             r"\(WBO\)", 
@@ -462,7 +494,7 @@ class DSPreprocess:
 
         removal_percentage = round(1 - statics_f2.shape[0] / statics.shape[0], 3)
 
-        print(f"For {country}, filter (2) removes ~{removal_percentage * 100}% of stocks (based on raw data).")
+        logging.info(f"For {country}, filter (2) removes ~{removal_percentage * 100}% of stocks (based on raw data).")
         rem_stocks_f2  = statics_f2["DSCD"].unique()
         panel_filtered = panel[panel["Stock"].isin(rem_stocks_f2)].copy()
 
@@ -492,7 +524,7 @@ class DSPreprocess:
 
         statics_f3   = statics[rows_to_keep].copy()
         removal_percentage = round(1 - statics_f3.shape[0] / statics.shape[0], 3)
-        print(f"Filter (3) removes ~{removal_percentage * 100}% of stocks (based on raw data).")
+        logging.info(f"Filter (3) removes ~{removal_percentage * 100}% of stocks (based on raw data).")
 
         rem_stocks_f3  = statics_f3["DSCD"].unique()
         panel_filtered = panel[panel["Stock"].isin(rem_stocks_f3)].copy()
@@ -519,6 +551,9 @@ class DSPreprocess:
             
             'USA': 
             "UNITED STATES",
+
+            'Canada':
+            "CANADA",
             
             'Austria':
             "AUSTRIA", 
@@ -653,7 +688,7 @@ class DSPreprocess:
         panel_filtered = panel[panel["Stock"].isin(rem_stocks_f4)].copy()
 
         removal_percentage = round(1 - statics_f4.shape[0] / statics.shape[0], 4)
-        print(f"Filter (4) removes ~{removal_percentage * 100}% of stocks")
+        logging.info(f"Filter (4) removes ~{removal_percentage * 100}% of stocks")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -675,6 +710,7 @@ class DSPreprocess:
         # Dictionary: country -> earliest allowable date (DD-MM-YYYY)
         country_start_dates = {
             'UNITED STATES': '31-12-1984',
+            'CANADA': '31-12-1983',
             'AUSTRIA': '31-12-1991',
             'AZERBAIJAN': '31-12-1900',
             'BELGIUM': '31-12-1991',
@@ -738,7 +774,7 @@ class DSPreprocess:
                 1.0 - filtered_count / float(original_count)
         ) if original_count > 0 else 0.0
 
-        print(f"For {country}, filter (17) removes ~{round(removal_percentage * 100, 2)}% of rows.")
+        logging.info(f"For {country}, filter (17) removes ~{round(removal_percentage * 100, 2)}% of rows.")
         return panel_filtered.reset_index(drop=True)
 
 
@@ -760,6 +796,9 @@ class DSPreprocess:
             
             'UNITED STATES':
             ['U$'],
+
+            'CANADA':
+            ['C$'],
             
             'AUSTRIA':
             ['AS', 'E'], 
@@ -895,7 +934,7 @@ class DSPreprocess:
         panel_filtered = panel[panel["Stock"].isin(rem_stocks_f5)].copy()
 
         removal_percentage = round(1 - statics_f5.shape[0] / statics[statics["GEOGN"] == country].shape[0], 3)
-        print(f"For {country}, filter (5) removes ~{removal_percentage * 100}% of stocks")
+        logging.info(f"For {country}, filter (5) removes ~{removal_percentage * 100}% of stocks")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -925,12 +964,12 @@ class DSPreprocess:
         valid_countries   = country_counts[country_counts >= min_stocks].index
 
         if not removed_countries.empty:
-            print("\nThe following countries were removed due to having fewer than "
+            logging.info("\nThe following countries were removed due to having fewer than "
                   f"{min_stocks} unique stocks:")
             for country, count in removed_countries.items():
-                print(f"  - {country}: {count} stocks")
+                logging.info(f"  - {country}: {count} stocks")
         else:
-            print("\nNo countries removed — all meet the minimum stock threshold.")
+            logging.info("\nNo countries removed — all meet the minimum stock threshold.")
 
         statics_filtered     = statics[statics['GEOGN'].isin(valid_countries)].copy()
         valid_stocks         = statics_filtered['DSCD'].unique()
@@ -971,7 +1010,7 @@ class DSPreprocess:
 
         panel_filtered     = panel[~panel["Stock"].isin(stocks_implausible)].copy()
         removal_percentage = round(1 - panel_filtered.shape[0] / panel.shape[0], 3)
-        print(f"Filter (7) removes ~{removal_percentage * 100}% of observations")
+        logging.info(f"Filter (7) removes ~{removal_percentage * 100}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1022,7 +1061,7 @@ class DSPreprocess:
             truncate_at_delisting)
 
         removal_percentage = round(1 - panel_filtered.shape[0] / panel.shape[0], 3)
-        print(f"Filter (13) removes ~{removal_percentage * 100}% of observations")
+        logging.info(f"Filter (13) removes ~{removal_percentage * 100}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1062,7 +1101,7 @@ class DSPreprocess:
         panel_filtered = panel.groupby("Stock", group_keys=False)[panel.columns].apply(filter_stale_prices_for_stock)
 
         removal_percentage = round(1 - panel_filtered.shape[0] / original_count, 5)
-        print(f"Filter (14) removes ~{removal_percentage * 100}% of observations")
+        logging.info(f"Filter (14) removes ~{removal_percentage * 100}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1087,7 +1126,7 @@ class DSPreprocess:
         panel_filtered = panel[~panel["Stock"].isin(stocks_too_many_zeros)].copy()
 
         removed_percentage = round(1 - panel_filtered.shape[0] / panel.shape[0], 6)
-        print(f"Filter (8) removes ~{removed_percentage * 100}% of observations")
+        logging.info(f"Filter (8) removes ~{removed_percentage * 100}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1110,7 +1149,7 @@ class DSPreprocess:
 
         panel_filtered = panel[~panel["Stock"].isin(stocks_to_filter)].copy()
         removed_percentage = round(1 - panel_filtered.shape[0] / panel.shape[0], 3)
-        print(f"Filter (9) removes ~{removed_percentage * 100}% of observations")
+        logging.info(f"Filter (9) removes ~{removed_percentage * 100}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1133,7 +1172,7 @@ class DSPreprocess:
 
         panel_filtered   = panel[~panel["Stock"].isin(low_vol_stocks)].copy()
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Filter (10) removes ~{round(removed_fraction * 100, 6)}% of observations")
+        logging.info(f"Filter (10) removes ~{round(removed_fraction * 100, 6)}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1169,7 +1208,7 @@ class DSPreprocess:
 
         panel_filtered   = panel.groupby('Stock').filter(stock_filter)
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Filter (12) removes ~{round(removed_fraction * 100, 6)}% of observations")
+        logging.info(f"Filter (12) removes ~{round(removed_fraction * 100, 6)}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1215,7 +1254,7 @@ class DSPreprocess:
         panel_filtered = panel.groupby('Stock', group_keys=False)[panel.columns].apply(filter_stock)
 
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Filter (15) removes ~{round(removed_fraction * 100, 5)}% of observations")
+        logging.info(f"Filter (15) removes ~{round(removed_fraction * 100, 5)}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1247,7 +1286,7 @@ class DSPreprocess:
         panel_filtered = panel[panel['Date'].isin(valid_dates)]
 
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Filter (16) removes ~{round(removed_fraction * 100, 3)}% of observations")
+        logging.info(f"Filter (16) removes ~{round(removed_fraction * 100, 3)}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1300,8 +1339,8 @@ class DSPreprocess:
         panel_filtered.drop(columns=['Month', quantile_string], inplace=True)
 
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Filter (21) removed ~{round(removed_fraction * 100, 4)}% of observations")
-        return panel_filtered, panel.groupby("Month")[quantile_string]
+        logging.info(f"Filter (21) removed ~{round(removed_fraction * 100, 4)}% of observations")
+        return panel_filtered, panel.groupby("Month")[quantile_string].mean()
 
 
     @staticmethod
@@ -1327,7 +1366,7 @@ class DSPreprocess:
         panel_filtered = panel[valid_mask]
 
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"OHLC inconsistency filter removes ~{round(removed_fraction * 100, 5)}% of observations")
+        logging.info(f"OHLC inconsistency filter removes ~{round(removed_fraction * 100, 5)}% of observations")
 
         return panel_filtered.reset_index(drop=True)
 
@@ -1349,7 +1388,7 @@ class DSPreprocess:
         mask = condition.all(axis=1)
         panel_filtered = panel[mask].copy()
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Extreme prices filter ~{round(removed_fraction * 100, 7)}% of observations")
+        logging.info(f"Extreme prices filter ~{round(removed_fraction * 100, 7)}% of observations")
 
         return panel_filtered
 
@@ -1369,7 +1408,7 @@ class DSPreprocess:
         panel_filtered = panel[(panel["Return"] <= up_ts) & (panel["Return"] >= down_ts)]
 
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Decimal error filter ~{round(removed_fraction * 100, 7)}% of observations")
+        logging.info(f"Decimal error filter ~{round(removed_fraction * 100, 7)}% of observations")
         return panel_filtered
 
 
@@ -1402,7 +1441,7 @@ class DSPreprocess:
 
         panel_filtered = panel.groupby("Stock", group_keys=False)[panel.columns].apply(drop_identical)
         removed_fraction = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Identical HL&V filter removed ~{round(removed_fraction * 100, 7)}% of observations")
+        logging.info(f"Identical HL&V filter removed ~{round(removed_fraction * 100, 7)}% of observations")
 
         return panel_filtered
 
@@ -1427,7 +1466,7 @@ class DSPreprocess:
         panel_filtered = panel[(panel['Return'] >= lower_threshold) & (panel['Return'] <= upper_threshold)].copy()
 
         removal_percentage = round(1 - panel_filtered.shape[0] / panel.shape[0], 3)
-        print(f"Outlier filter removes ~{removal_percentage * 100:.2f}% of observations")
+        logging.info(f"Outlier filter removes ~{removal_percentage * 100:.2f}% of observations")
 
         return panel_filtered
 
@@ -1462,7 +1501,7 @@ class DSPreprocess:
 
         # Print how many observations were removed
         removal_percentage = 1 - panel_filtered.shape[0] / panel.shape[0]
-        print(f"Outlier filter 2 removes ~{removal_percentage * 100:.5f}% of observations")
+        logging.info(f"Outlier filter 2 removes ~{removal_percentage * 100:.5f}% of observations")
 
         return panel_filtered
 
@@ -1487,7 +1526,7 @@ class DSPreprocess:
         mis_val_table = mis_val_table[mis_val_table['% of Total Values'] != 0]
         mis_val_table = mis_val_table.sort_values('% of Total Values', ascending=False).round(1)
 
-        print(f"Dataframe has {df.shape[1]} columns.\nThere are/is {mis_val_table.shape[0]} columns with missing values.")
+        logging.info(f"Dataframe has {df.shape[1]} columns.\nThere are/is {mis_val_table.shape[0]} columns with missing values.")
 
         return mis_val_table
 
@@ -1514,6 +1553,6 @@ class DSPreprocess:
         panel_filtered = panel[(diff_percentage <= threshold) | (diff_percentage.isna())].copy()
 
         removal_percentage = round(1 - panel_filtered.shape[0] / panel.shape[0], 3)
-        print(f"Filter (18) removes ~{removal_percentage * 100:.2f}% of observations")
+        logging.info(f"Filter (18) removes ~{removal_percentage * 100:.2f}% of observations")
 
         return panel_filtered

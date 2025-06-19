@@ -1,0 +1,243 @@
+nohup: ignoring input
+2025-06-18 17:03:48,276 : INFO : Saving directory seems to exist already.
+Load data:   0%|          | 0/44 [00:00<?, ?it/s]Load data:   2%|▏         | 1/44 [00:00<00:35,  1.22it/s]Load data:   5%|▍         | 2/44 [00:01<00:29,  1.41it/s]Load data:   7%|▋         | 3/44 [00:01<00:26,  1.58it/s]Load data:   9%|▉         | 4/44 [00:02<00:25,  1.59it/s]Load data:  11%|█▏        | 5/44 [00:03<00:24,  1.59it/s]Load data:  14%|█▎        | 6/44 [00:03<00:23,  1.62it/s]Load data:  16%|█▌        | 7/44 [00:04<00:23,  1.55it/s]Load data:  18%|█▊        | 8/44 [00:05<00:23,  1.51it/s]Load data:  20%|██        | 9/44 [00:05<00:22,  1.53it/s]Load data:  23%|██▎       | 10/44 [00:06<00:21,  1.61it/s]Load data:  25%|██▌       | 11/44 [00:07<00:20,  1.58it/s]Load data:  27%|██▋       | 12/44 [00:07<00:17,  1.80it/s]Load data:  30%|██▉       | 13/44 [00:08<00:17,  1.79it/s]Load data:  32%|███▏      | 14/44 [00:08<00:17,  1.71it/s]Load data:  34%|███▍      | 15/44 [00:09<00:17,  1.64it/s]Load data:  36%|███▋      | 16/44 [00:10<00:17,  1.57it/s]Load data:  39%|███▊      | 17/44 [00:10<00:17,  1.58it/s]Load data:  41%|████      | 18/44 [00:11<00:15,  1.64it/s]Load data:  43%|████▎     | 19/44 [00:11<00:13,  1.82it/s]Load data:  45%|████▌     | 20/44 [00:12<00:14,  1.69it/s]Load data:  48%|████▊     | 21/44 [00:12<00:13,  1.65it/s]Load data:  50%|█████     | 22/44 [00:13<00:13,  1.66it/s]Load data:  52%|█████▏    | 23/44 [00:14<00:12,  1.73it/s]Load data:  55%|█████▍    | 24/44 [00:14<00:10,  1.86it/s]Load data:  57%|█████▋    | 25/44 [00:15<00:09,  1.93it/s]Load data:  59%|█████▉    | 26/44 [00:15<00:09,  1.98it/s]Load data:  61%|██████▏   | 27/44 [00:15<00:08,  1.96it/s]Load data:  64%|██████▎   | 28/44 [00:16<00:07,  2.01it/s]Load data:  66%|██████▌   | 29/44 [00:16<00:06,  2.29it/s]Load data:  68%|██████▊   | 30/44 [00:16<00:05,  2.73it/s]Load data:  70%|███████   | 31/44 [00:17<00:04,  3.11it/s]Load data:  73%|███████▎  | 32/44 [00:17<00:03,  3.30it/s]Load data:  75%|███████▌  | 33/44 [00:17<00:03,  3.24it/s]Load data:  77%|███████▋  | 34/44 [00:18<00:03,  2.97it/s]Load data:  80%|███████▉  | 35/44 [00:18<00:03,  2.56it/s]Load data:  82%|████████▏ | 36/44 [00:19<00:03,  2.45it/s]Load data:  84%|████████▍ | 37/44 [00:19<00:02,  2.55it/s]Load data:  86%|████████▋ | 38/44 [00:19<00:02,  2.39it/s]Load data:  89%|████████▊ | 39/44 [00:20<00:02,  2.35it/s]Load data:  91%|█████████ | 40/44 [00:20<00:01,  2.75it/s]Load data:  93%|█████████▎| 41/44 [00:21<00:01,  2.60it/s]Load data:  95%|█████████▌| 42/44 [00:21<00:00,  2.52it/s]Load data:  98%|█████████▊| 43/44 [00:21<00:00,  2.95it/s]Load data: 100%|██████████| 44/44 [00:21<00:00,  3.20it/s]Load data: 100%|██████████| 44/44 [00:21<00:00,  2.01it/s]
+For GERMANY, filter (1) removes ~0.0% of stocks (based on raw data).
+For CANADA, filter (1) removes ~2.0% of stocks (based on raw data).
+For IRELAND, filter (1) removes ~0.0% of stocks (based on raw data).
+For UNITED KINGDOM, filter (1) removes ~0.0% of stocks (based on raw data).
+For SPAIN, filter (1) removes ~0.0% of stocks (based on raw data).
+For FRANCE, filter (1) removes ~1.0% of stocks (based on raw data).
+For ITALY, filter (1) removes ~0.0% of stocks (based on raw data).
+For SWITZERLAND, filter (1) removes ~2.0% of stocks (based on raw data).
+For BELGIUM, filter (1) removes ~2.0% of stocks (based on raw data).
+For POLAND, filter (1) removes ~0.0% of stocks (based on raw data).
+For SWEDEN, filter (1) removes ~0.0% of stocks (based on raw data).
+For RUSSIAN FEDERATION, filter (1) removes ~0.0% of stocks (based on raw data).
+For UKRAINE, filter (1) removes ~0.0% of stocks (based on raw data).
+For TURKEY, filter (1) removes ~0.0% of stocks (based on raw data).
+For SLOVENIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For SLOVAKIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For SERBIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For ROMANIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For PORTUGAL, filter (1) removes ~0.0% of stocks (based on raw data).
+For NORWAY, filter (1) removes ~0.0% of stocks (based on raw data).
+For NETHERLANDS, filter (1) removes ~1.0% of stocks (based on raw data).
+For MONTENEGRO, filter (1) removes ~0.0% of stocks (based on raw data).
+For MALTA, filter (1) removes ~0.0% of stocks (based on raw data).
+For NORTH MACEDONIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For LUXEMBOURG, filter (1) removes ~1.0% of stocks (based on raw data).
+For LITHUANIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For LATVIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For KAZAKHSTAN, filter (1) removes ~0.0% of stocks (based on raw data).
+For ICELAND, filter (1) removes ~0.0% of stocks (based on raw data).
+For HUNGARY, filter (1) removes ~0.0% of stocks (based on raw data).
+For GREECE, filter (1) removes ~0.0% of stocks (based on raw data).
+For FINLAND, filter (1) removes ~0.0% of stocks (based on raw data).
+For ESTONIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For DENMARK, filter (1) removes ~0.0% of stocks (based on raw data).
+For CZECH REPUBLIC, filter (1) removes ~0.0% of stocks (based on raw data).
+For CYPRUS, filter (1) removes ~0.0% of stocks (based on raw data).
+For CROATIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For BULGARIA, filter (1) removes ~0.0% of stocks (based on raw data).
+For BOSNIA AND HERZEGOVINA, filter (1) removes ~0.0% of stocks (based on raw data).
+For AZERBAIJAN, filter (1) removes ~0.0% of stocks (based on raw data).
+For AUSTRIA, filter (1) removes ~1.0% of stocks (based on raw data).
+For GERMANY, filter (2) removes ~2.5% of stocks (based on raw data).
+For CANADA, filter (2) removes ~0.0% of stocks (based on raw data).
+For IRELAND, filter (2) removes ~0.1% of stocks (based on raw data).
+For UNITED KINGDOM, filter (2) removes ~0.1% of stocks (based on raw data).
+For SPAIN, filter (2) removes ~0.0% of stocks (based on raw data).
+For FRANCE, filter (2) removes ~0.0% of stocks (based on raw data).
+For ITALY, filter (2) removes ~0.0% of stocks (based on raw data).
+For SWITZERLAND, filter (2) removes ~0.0% of stocks (based on raw data).
+For BELGIUM, filter (2) removes ~0.1% of stocks (based on raw data).
+For POLAND, filter (2) removes ~0.0% of stocks (based on raw data).
+For SWEDEN, filter (2) removes ~0.0% of stocks (based on raw data).
+For RUSSIAN FEDERATION, filter (2) removes ~0.0% of stocks (based on raw data).
+For UKRAINE, filter (2) removes ~0.0% of stocks (based on raw data).
+For TURKEY, filter (2) removes ~0.0% of stocks (based on raw data).
+For SLOVENIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For SLOVAKIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For SERBIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For ROMANIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For PORTUGAL, filter (2) removes ~0.0% of stocks (based on raw data).
+For NORWAY, filter (2) removes ~0.0% of stocks (based on raw data).
+For NETHERLANDS, filter (2) removes ~0.0% of stocks (based on raw data).
+For MONTENEGRO, filter (2) removes ~0.0% of stocks (based on raw data).
+For MALTA, filter (2) removes ~0.0% of stocks (based on raw data).
+For NORTH MACEDONIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For LUXEMBOURG, filter (2) removes ~0.1% of stocks (based on raw data).
+For LITHUANIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For LATVIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For KAZAKHSTAN, filter (2) removes ~0.0% of stocks (based on raw data).
+For ICELAND, filter (2) removes ~0.0% of stocks (based on raw data).
+For HUNGARY, filter (2) removes ~0.0% of stocks (based on raw data).
+For GREECE, filter (2) removes ~0.0% of stocks (based on raw data).
+For FINLAND, filter (2) removes ~0.0% of stocks (based on raw data).
+For ESTONIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For DENMARK, filter (2) removes ~0.0% of stocks (based on raw data).
+For CZECH REPUBLIC, filter (2) removes ~0.0% of stocks (based on raw data).
+For CYPRUS, filter (2) removes ~0.0% of stocks (based on raw data).
+For CROATIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For BULGARIA, filter (2) removes ~0.0% of stocks (based on raw data).
+For BOSNIA AND HERZEGOVINA, filter (2) removes ~0.0% of stocks (based on raw data).
+For AZERBAIJAN, filter (2) removes ~0.0% of stocks (based on raw data).
+For AUSTRIA, filter (2) removes ~0.0% of stocks (based on raw data).
+Filter (3) removes ~3.4000000000000004% of stocks (based on raw data).
+For GERMANY, filter (5) removes ~0.1% of stocks
+For CANADA, filter (5) removes ~100.0% of stocks
+For IRELAND, filter (5) removes ~0.0% of stocks
+For UNITED KINGDOM, filter (5) removes ~6.800000000000001% of stocks
+For SPAIN, filter (5) removes ~0.0% of stocks
+For FRANCE, filter (5) removes ~0.0% of stocks
+For ITALY, filter (5) removes ~0.1% of stocks
+For SWITZERLAND, filter (5) removes ~0.5% of stocks
+For BELGIUM, filter (5) removes ~0.1% of stocks
+For POLAND, filter (5) removes ~0.1% of stocks
+For SWEDEN, filter (5) removes ~0.4% of stocks
+For RUSSIAN FEDERATION, filter (5) removes ~6.800000000000001% of stocks
+For UKRAINE, filter (5) removes ~0.0% of stocks
+For TURKEY, filter (5) removes ~1.9% of stocks
+For SLOVENIA, filter (5) removes ~0.0% of stocks
+For SLOVAKIA, filter (5) removes ~0.0% of stocks
+For SERBIA, filter (5) removes ~0.1% of stocks
+For ROMANIA, filter (5) removes ~0.0% of stocks
+For PORTUGAL, filter (5) removes ~0.0% of stocks
+For NORWAY, filter (5) removes ~0.1% of stocks
+For NETHERLANDS, filter (5) removes ~1.2% of stocks
+For MONTENEGRO, filter (5) removes ~0.0% of stocks
+For MALTA, filter (5) removes ~5.0% of stocks
+For NORTH MACEDONIA, filter (5) removes ~0.0% of stocks
+For LUXEMBOURG, filter (5) removes ~25.6% of stocks
+For LITHUANIA, filter (5) removes ~0.0% of stocks
+For LATVIA, filter (5) removes ~0.0% of stocks
+For KAZAKHSTAN, filter (5) removes ~3.0% of stocks
+For ICELAND, filter (5) removes ~0.0% of stocks
+For HUNGARY, filter (5) removes ~1.3% of stocks
+For GREECE, filter (5) removes ~0.2% of stocks
+For FINLAND, filter (5) removes ~0.0% of stocks
+For ESTONIA, filter (5) removes ~0.0% of stocks
+For DENMARK, filter (5) removes ~0.0% of stocks
+For CZECH REPUBLIC, filter (5) removes ~0.0% of stocks
+For CYPRUS, filter (5) removes ~0.8% of stocks
+For CROATIA, filter (5) removes ~0.0% of stocks
+For BULGARIA, filter (5) removes ~0.1% of stocks
+For BOSNIA AND HERZEGOVINA, filter (5) removes ~0.0% of stocks
+For AZERBAIJAN, filter (5) removes ~0.0% of stocks
+For AUSTRIA, filter (5) removes ~0.2% of stocks
+For GERMANY, filter (17) removes ~0.0% of rows.
+For CANADA, filter (17) removes ~0.0% of rows.
+For IRELAND, filter (17) removes ~0.0% of rows.
+For UNITED KINGDOM, filter (17) removes ~0.0% of rows.
+For SPAIN, filter (17) removes ~0.0% of rows.
+For FRANCE, filter (17) removes ~0.0% of rows.2025-06-18 17:13:42,495 : INFO : Saving monthly thresholds for penny stock selection.
+2025-06-18 17:13:47,718 : INFO : Saving data and static information for remaining companies.
+
+For ITALY, filter (17) removes ~0.0% of rows.
+For SWITZERLAND, filter (17) removes ~0.0% of rows.
+For BELGIUM, filter (17) removes ~0.0% of rows.
+For POLAND, filter (17) removes ~6.41% of rows.
+For SWEDEN, filter (17) removes ~0.0% of rows.
+For RUSSIAN FEDERATION, filter (17) removes ~35.38% of rows.
+For UKRAINE, filter (17) removes ~41.8% of rows.
+For TURKEY, filter (17) removes ~3.21% of rows.
+For SLOVENIA, filter (17) removes ~38.59% of rows.
+For SLOVAKIA, filter (17) removes ~45.01% of rows.
+For SERBIA, filter (17) removes ~0.0% of rows.
+For ROMANIA, filter (17) removes ~48.24% of rows.
+For PORTUGAL, filter (17) removes ~0.0% of rows.
+For NORWAY, filter (17) removes ~0.0% of rows.
+For NETHERLANDS, filter (17) removes ~0.0% of rows.
+For MONTENEGRO, filter (17) removes ~0.0% of rows.
+For MALTA, filter (17) removes ~0.0% of rows.
+For NORTH MACEDONIA, filter (17) removes ~51.45% of rows.
+For LUXEMBOURG, filter (17) removes ~0.0% of rows.
+For LITHUANIA, filter (17) removes ~0.0% of rows.
+For LATVIA, filter (17) removes ~0.0% of rows.
+For KAZAKHSTAN, filter (17) removes ~64.32% of rows.
+For ICELAND, filter (17) removes ~0.0% of rows.
+For HUNGARY, filter (17) removes ~19.28% of rows.
+For GREECE, filter (17) removes ~6.41% of rows.
+For FINLAND, filter (17) removes ~0.0% of rows.
+For ESTONIA, filter (17) removes ~0.0% of rows.
+For DENMARK, filter (17) removes ~0.0% of rows.
+For CZECH REPUBLIC, filter (17) removes ~0.0% of rows.
+For CYPRUS, filter (17) removes ~51.45% of rows.
+For CROATIA, filter (17) removes ~38.59% of rows.
+For BULGARIA, filter (17) removes ~38.59% of rows.
+For BOSNIA AND HERZEGOVINA, filter (17) removes ~51.45% of rows.
+For AZERBAIJAN, filter (17) removes ~0.0% of rows.
+For AUSTRIA, filter (17) removes ~0.0% of rows.
+Filter (7) removes ~0.3% of observations
+Filter (13) removes ~20.8% of observations
+Filter (8) removes ~0.6204000000000001% of observations
+Filter (14) removes ~11.251% of observations
+Filter (9) removes ~1.3% of observations
+Filter (10) removes ~0.215418% of observations
+Filter (15) removes ~0.00151% of observations
+Filter (16) removes ~0.627% of observations
+OHLC inconsistency filter removes ~0.08856% of observations
+Identical HL&V filter removed ~0.0226902% of observations
+For GERMANY, filter (0) removes ~60.525% of observations
+For CANADA, filter (0) removes ~0% of observations
+For IRELAND, filter (0) removes ~58.672000000000004% of observations
+For UNITED KINGDOM, filter (0) removes ~18.078% of observations
+For SPAIN, filter (0) removes ~41.792% of observations
+For FRANCE, filter (0) removes ~18.509999999999998% of observations
+For ITALY, filter (0) removes ~28.009% of observations
+For SWITZERLAND, filter (0) removes ~32.272% of observations
+For BELGIUM, filter (0) removes ~13.059000000000001% of observations
+For POLAND, filter (0) removes ~46.755% of observations
+For SWEDEN, filter (0) removes ~60.260000000000005% of observations
+For RUSSIAN FEDERATION, filter (0) removes ~23.714% of observations
+For UKRAINE, filter (0) removes ~24.832% of observations
+For TURKEY, filter (0) removes ~76.256% of observations
+For SLOVENIA, filter (0) removes ~51.702000000000005% of observations
+For SLOVAKIA, filter (0) removes ~0% of observations
+For SERBIA, filter (0) removes ~0% of observations
+For ROMANIA, filter (0) removes ~0.048% of observations
+For PORTUGAL, filter (0) removes ~50.011% of observations
+For NORWAY, filter (0) removes ~24.582% of observations
+For NETHERLANDS, filter (0) removes ~16.343% of observations
+For MONTENEGRO, filter (0) removes ~0% of observations
+For MALTA, filter (0) removes ~0% of observations
+For NORTH MACEDONIA, filter (0) removes ~0.44799999999999995% of observations
+For LUXEMBOURG, filter (0) removes ~0% of observations
+For LITHUANIA, filter (0) removes ~0% of observations
+For LATVIA, filter (0) removes ~0% of observations
+For KAZAKHSTAN, filter (0) removes ~64.13% of observations
+For ICELAND, filter (0) removes ~0% of observations
+For HUNGARY, filter (0) removes ~70.408% of observations
+For GREECE, filter (0) removes ~95.316% of observations
+For FINLAND, filter (0) removes ~95.30499999999999% of observations
+For ESTONIA, filter (0) removes ~0% of observations
+For DENMARK, filter (0) removes ~35.909% of observations
+For CZECH REPUBLIC, filter (0) removes ~0% of observations
+For CYPRUS, filter (0) removes ~67.93599999999999% of observations
+For CROATIA, filter (0) removes ~21.294% of observations
+For BULGARIA, filter (0) removes ~10.229000000000001% of observations
+For BOSNIA AND HERZEGOVINA, filter (0) removes ~58.641% of observations
+For AZERBAIJAN, filter (0) removes ~0% of observations
+For AUSTRIA, filter (0) removes ~14.710999999999999% of observations
+Filter (18) removes ~3.90% of observations
+Filter (21) removed ~9.8831% of observations
+
+The following countries were removed due to having fewer than 20 unique stocks:
+  - BOSNIA AND HERZEGOVINA: 17 stocks
+  - BULGARIA: 5 stocks
+  - CROATIA: 1 stocks
+  - CYPRUS: 3 stocks
+  - DENMARK: 4 stocks
+  - FINLAND: 10 stocks
+  - GREECE: 2 stocks
+  - HUNGARY: 4 stocks
+  - IRELAND: 3 stocks
+  - KAZAKHSTAN: 2 stocks
+  - NORTH MACEDONIA: 2 stocks
+  - PORTUGAL: 18 stocks
+  - ROMANIA: 1 stocks
+  - SLOVENIA: 1 stocks
+  - TURKEY: 2 stocks
+  - UKRAINE: 15 stocks
+Outlier filter 2 removes ~0.15410% of observations
+Filter (12) removes ~0.06374% of observations
